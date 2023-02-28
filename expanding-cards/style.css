@@ -1,0 +1,50 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', sans-serif;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	display: grid;
+	justify-content: center;
+	align-items: center;
+}
+
+.container {
+	display: flex;
+	width: 90vw;
+}
+
+.card {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 80vh;
+	flex: 0.5;
+	margin: 10px;
+	border-radius: 25px;
+	position: relative;
+	color: #fff;
+	cursor: pointer;
+	-webkit-transition: all ease-in 700ms;
+	transition: all ease-in 700ms;
+}
+
+.card.active {
+	flex: 5;
+}
+
+.title {
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	font-size: 24px;
+	opacity: 0;
+}
+
+.card.active .title {
+	opacity: 1;
+	transition: opacity 0.3s ease-in 0.4s;
+}

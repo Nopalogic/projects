@@ -24,8 +24,8 @@ body {
 	height: 80vh;
 	flex: 0.5;
 	margin: 10px;
-	border-radius: 25px;
 	position: relative;
+	border-radius: 25px;
 	color: #fff;
 	cursor: pointer;
 	-webkit-transition: all ease-in 700ms;

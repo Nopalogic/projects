@@ -1,0 +1,36 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
+}
+
+body{
+  width: min(100% - 32px, 1280px);
+  margin-inline: auto;
+  background-color: dimgray;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar{
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links{
+  display: flex;
+  gap: 20px;
+}
+
+@media screen and (max-width: 400px) {
+  .links{
+    display: none;
+  }
+}

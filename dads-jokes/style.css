@@ -1,1 +1,50 @@
-s
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #a240bf;
+}
+
+.container {
+	min-width: 400px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 50px 20px;
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+h1 {
+	font-size: 1.1rem;
+	color: #888;
+	margin-bottom: 20px;
+}
+
+.button {
+	padding: 10px 20px;
+	margin: 0 5px;
+	font-size: 1rem;
+	border-radius: 3px;
+	outline: none;
+	border: none;
+	color: #fff;
+  background-color: #a240bf;
+}
+
+.button:hover {
+	cursor: pointer;
+}
+
+.joke-text {
+	font-size: 1.3rem;
+	margin-bottom: 30px;
+	font-family: monospace;
+}

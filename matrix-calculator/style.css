@@ -1,0 +1,55 @@
+body {
+	height: 100vh;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	background-color: #16161a;
+	color: #fffffe;
+}
+
+.input {
+	width: 100%;
+	/* height: 20rem; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+}
+
+.matrixParent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.matrixChild {
+	width: 100px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+}
+
+.matrixChild > input {
+	width: 20px;
+	height: 20px;
+	text-align: center;
+}
+
+.functions,
+#operations {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 110px;
+}
+
+.resultConsole {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	height: 200px;
+	resize: none;
+}

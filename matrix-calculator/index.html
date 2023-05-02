@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Matrix Calculator</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="input">
+				<div id="matrix1" class="matrixParent">
+					<h1>Matrix A</h1>
+					<div class="matrixChild">
+						<input class="matrix1Row1" type="text" value="0" />
+						<input class="matrix1Row1" type="text" value="0" />
+						<input class="matrix1Row1" type="text" value="0" />
+						<input class="matrix1Row2" type="text" value="0" />
+						<input class="matrix1Row2" type="text" value="0" />
+						<input class="matrix1Row2" type="text" value="0" />
+						<input class="matrix1Row3" type="text" value="0" />
+						<input class="matrix1Row3" type="text" value="0" />
+						<input class="matrix1Row3" type="text" value="0" />
+					</div>
+				</div>
+				<div class="functions">
+					<input class="function" type="button" value="Determinant" onclick="mc.calculateMatrix()" />
+					<input class="function" type="button" value="Transpose" onclick="mc.transposeMatrix()" />
+					<input class="function" type="button" value="Invers" onclick="mc.inversMatrix()" />
+					<input class="function" type="button" value="Rank" onclick="mc.calculateRank()" />
+				</div>
+				<div id="operations">
+					<input type="button" class="operation" value="A x B" onclick="mc.multiplyMatrix()" />
+					<input type="button" class="operation" value="A + B" onclick="mc.addMatrix()" />
+					<input type="button" class="operation" value="A - B" onclick="mc.subtractMatrix()" />
+				</div>
+				<div id="matrix2" class="matrixParent">
+					<h1>Matrix B</h1>
+					<div class="matrixChild">
+						<input class="matrix2Row1" type="text" value="0" />
+						<input class="matrix2Row1" type="text" value="0" />
+						<input class="matrix2Row1" type="text" value="0" />
+						<input class="matrix2Row2" type="text" value="0" />
+						<input class="matrix2Row2" type="text" value="0" />
+						<input class="matrix2Row2" type="text" value="0" />
+						<input class="matrix2Row3" type="text" value="0" />
+						<input class="matrix2Row3" type="text" value="0" />
+						<input class="matrix2Row3" type="text" value="0" />
+					</div>
+				</div>
+			</div>
+			<div class="result">
+				<h1>Result</h1>
+				<textarea id="console" class="resultConsole" disabled></textarea>
+			</div>
+		</div>
+
+    <script src="./script.js"></script>
+	</body>
+</html>

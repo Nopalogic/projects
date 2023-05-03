@@ -155,4 +155,64 @@ class MatrixCalculator {
 		}
 		this.printOnConsole(string);
 	}
+
+	addMatrix() {
+		this.rebuildMatrix();
+		if (this.AxDimension != this.AyDimension) {
+			this.printOnConsole('Matrix have different dimension.');
+			return;
+		}
+
+		let result = [];
+		for (let i = 0; i < 3; i++) result[i] = [];
+
+		for (let i = 0; i < this.AyDimension; i++) {
+			for (let j = 0; j < this.AxDimension; j++) {
+				result[i][j] = Math.round((parseFloat(this.matrixA[i][j]) + parseFloat(this.matrixB[i][j])) * 100) / 100;
+			}
+		}
+
+		let string = 'Addition result:\r';
+		for (let i = 0; i < this.AyDimension; i++) {
+			for (let j = 0; j < this.AxDimension; j++) {
+				string = string + '\t' + result[i][j];
+			}
+			string = string + '\r';
+		}
+		this.printOnConsole(string);
+	}
+
+	mutliplyMatrix() {
+		this.rebuildMatrix();
+		if (this.AxDimension != this.ByDimension) {
+			this.printOnConsole('Number of columns on A is different from number of rows on B.');
+			return;
+		}
+
+		let result = [];
+		for (let i = 0; i < 3; i++) result[i] = [];
+
+		let i = 0,
+			j = 0,
+			rowRes = this.AxDimension,
+			columnRes = this.AyDimension;
+
+		for (let i = 0; i < rowRes; i++) {
+			for (let j = 0; j < columnRes; j++) {
+				result[i][j] = this.matrixA[i][0] * this.matrixB[0][j] + this.matrixA[i][1] * this.matrixB[1][j] + this.matrixA[i][2] * this.matrixB[2][j];
+				result[i][j] = Math.round(result[i][j] * 100) / 100;
+			}
+		}
+
+		let string = 'Mutiplication result:\r';
+		for (let i = 0; i < rowRes; i++) {
+			for (let j = 0; j < columnRes; j++) {
+				string = string + '\t' + result[i][j];
+			}
+			string = string + '\r';
+		}
+		this.printOnConsole(string);
+	}
 }
+
+const mc = new MatrixCalculator();

@@ -2,8 +2,7 @@ class MatrixCalculator {
 	constructor() {
 		this.matrixA = [];
 		this.matrixB = [];
-
-		for (let i = 0; i < 3; i++) {
+		for (var i = 0; i < 3; i++) {
 			this.matrixA[i] = [];
 			this.matrixB[i] = [];
 		}
@@ -14,67 +13,70 @@ class MatrixCalculator {
 		this.ByDimension = 3;
 	}
 
-	calculateMatrix() {
+	calculateRank() {
 		this.rebuildMatrix();
 
-		let rank = this.AxDimension;
-		let row = this.AyDimension;
-		let mat = this.matrixA;
+		var rank = this.AxDimension;
+		var row = this.AyDimension;
+		var mat = this.matrixA;
 
 		for (row = 0; row < rank; row++) {
 			if (mat[row][row]) {
-				for (let col = 0; col < this.AyDimension; col++) {
+				for (var col = 0; col < this.AyDimension; col++) {
 					if (col != row) {
-						let multiply = Math.round((mat[col][row] / mat[row][row]) * 100) / 100;
-						for (let i = 0; i < rank; i++) mat[col][i] -= multiply * mat[row][i];
+						var mult = Math.round((mat[col][row] / mat[row][row]) * 100) / 100;
+						for (var i = 0; i < rank; i++) mat[col][i] -= mult * mat[row][i];
 					}
 				}
 			} else {
-				let reduce = true;
-				for (let i = row + 1; i < this.AyDimension; i++) {
+				var reduce = true;
+				for (var i = row + 1; i < this.AyDimension; i++) {
 					if (mat[i][row]) {
-						let aux = mat[row];
+						var aux = mat[row];
 						mat[row] = math[i];
 						math[i] = aux;
 						reduce = false;
 						break;
 					}
 				}
-
 				if (reduce) {
 					rank--;
-					for (let i = 0; i < this.AyDimension; i++) {
-						mat[i][row] = mat[i][rank];
-					}
+					for (i = 0; i < this.AyDimension; i++) mat[i][row] = mat[i][rank];
 				}
 				row--;
 			}
 		}
-		this.printOnConsole(`Matrix rank is: ${rank}`);
+		this.printOnConsole('Matrix rank is: ' + rank);
 	}
 
-	inversMatrix() {
+	invertMatrix() {
 		this.calculateDeterminant();
-		if (this.determinantA == null) return;
+		if (this.determinantA == null) return; //Error will already be printed out by calculateDeterminant method.
 		if (this.determinantA == 0) {
-			this.printOnConsole('Matrix is non-invertable.');
+			this.printOnConsole('Matrix is non-invertible.');
 			return;
 		}
-
-		let adjoint = [];
-		let result = [];
-		let aux = [];
-
-		for (let i = 0; i < this.AyDimension; i++) {
-			for (let j = 0; j < this.AxDimension; j++) {
-				if (this.AxDimension == 1) adjoint[i][j] = 1 + '/' + this.matrixA[i][j];
-				if (this.AxDimension == 2) adjoint[j][i] = (-1) ** (i + 1 + j) * this.matrixA[i][j];
+		var adjacent = [];
+		var result = [];
+		var aux = [];
+		for (var i = 0; i < 3; i++) {
+			adjacent[i] = [];
+			result[i] = [];
+			aux[i] = [];
+		}
+		//Calculating adjacency matrix
+		for (i = 0; i < this.AyDimension; i++) {
+			for (var j = 0; j < this.AxDimension; j++) {
+				if (this.AxDimension == 1) adjacent[i][j] = 1 + '/' + this.matrixA[i][j];
+				if (this.AxDimension == 2) {
+					adjacent[j][i] = (-1) ** (i + 1 + j + 1) * this.matrixA[i][j];
+				}
 				if (this.AxDimension == 3) {
-					let count1 = 0;
-					let count2 = 0;
-
-					for (let k = 0; k < 3; k++) {
-						for (let l = 0; l < 3; l++) {
+					//Reconstructing 2 dimension sub matrix
+					var count1 = 0;
+					var count2 = 0;
+					for (var k = 0; k < 3; k++) {
+						for (var l = 0; l < 3; l++) {
 							if (l != j && k != i) {
 								aux[count1][count2] = this.matrixA[k][l];
 								count2++;
@@ -83,35 +85,34 @@ class MatrixCalculator {
 						count2 = 0;
 						if (k != i) count1++;
 					}
-					adjoint[i][j] = (-1) ** (i + 1 + j + 1) * (aux[0][0] * aux[1][1] - aux[0][1] * aux[1][0]);
+					adjacent[i][j] = (-1) ** (i + 1 + j + 1) * (aux[0][0] * aux[1][1] - aux[0][1] * aux[1][0]);
 				}
 			}
 		}
-
-		// transposeing it
-		for (let i = 0; i < this.AxDimension; i++) {
-			for (let j = 0; j < this.AyDimension; j++) {
-				result[i][j] = adjoint[j][i];
+		//Transposing it
+		for (var i = 0; i < this.AxDimension; i++) {
+			for (var j = 0; j < this.AyDimension; j++) {
+				result[i][j] = adjacent[j][i];
 			}
 		}
 		if (this.AxDimension == 2) {
-			let temp = result[0][0];
+			var temp = result[0][0];
 			result[0][0] = result[1][1];
 			result[1][1] = temp;
 		}
 
-		// we divide by the determinant
+		//We divide by the determinant
 		if (this.AxDimension != 1) {
-			for (let i = 0; i < this.AyDimension; i++) {
-				for (let j = 0; j < this.AxDimension; j++) {
-					Math.round((result[i][j] / this.determinantA) * 100) / 100;
+			for (var i = 0; i < this.AxDimension; i++) {
+				for (var j = 0; j < this.AyDimension; j++) {
+					result[i][j] = Math.round((result[i][j] / this.determinantA) * 100) / 100;
 				}
 			}
 		}
 
-		const string = 'Invers Matrix:\r';
-		for (let i = 0; i < this.AyDimension; i++) {
-			for (let j = 0; j < this.AxDimension; j++) {
+		var string = 'Inverse matrix:\r';
+		for (i = 0; i < this.AyDimension; i++) {
+			for (var j = 0; j < this.AxDimension; j++) {
 				string = string + '\t' + result[i][j];
 			}
 			string = string + '\r';
@@ -121,9 +122,9 @@ class MatrixCalculator {
 
 	transposeMatrix() {
 		this.rebuildMatrix();
-		const string = 'Transpose matrix:\r';
-		for (let i = 0; i < this.AxDimension; i++) {
-			for (let j = 0; j < this.AyDimension; j++) {
+		var string = 'Transposition result:\r';
+		for (var i = 0; i < this.AxDimension; i++) {
+			for (var j = 0; j < this.AyDimension; j++) {
 				string = string + '\t' + this.matrixA[j][i];
 			}
 			string = string + '\r';
@@ -134,21 +135,19 @@ class MatrixCalculator {
 	subtractMatrix() {
 		this.rebuildMatrix();
 		if (this.AxDimension != this.AyDimension) {
-			this.printOnConsole('Matrix have different dimension.');
+			this.printOnConsole('Matrices have different dimmensions.');
 			return;
 		}
-		let result = [];
-		for (let i = 0; i < 3; i++) result[i] = [];
-
-		for (let i = 0; i < this.AyDimension; i++) {
-			for (let j = 0; j < this.AxDimension; j++) {
+		var result = [];
+		for (var i = 0; i < 3; i++) result[i] = [];
+		for (i = 0; i < this.AyDimension; i++) {
+			for (var j = 0; j < this.AxDimension; j++) {
 				result[i][j] = Math.round((parseFloat(this.matrixA[i][j]) - parseFloat(this.matrixB[i][j])) * 100) / 100;
 			}
 		}
-
-		let string = 'Subtraction result:\r';
-		for (let i = 0; i < this.AyDimension; i++) {
-			for (let j = 0; j < this.AxDimension; j++) {
+		var string = 'Subtraction result:\r';
+		for (i = 0; i < this.AyDimension; i++) {
+			for (var j = 0; j < this.AxDimension; j++) {
 				string = string + '\t' + result[i][j];
 			}
 			string = string + '\r';
@@ -159,22 +158,20 @@ class MatrixCalculator {
 	addMatrix() {
 		this.rebuildMatrix();
 		if (this.AxDimension != this.AyDimension) {
-			this.printOnConsole('Matrix have different dimension.');
+			this.printOnConsole('Matrices have different dimmensions.');
 			return;
 		}
-
-		let result = [];
-		for (let i = 0; i < 3; i++) result[i] = [];
-
-		for (let i = 0; i < this.AyDimension; i++) {
-			for (let j = 0; j < this.AxDimension; j++) {
+		var result = [];
+		for (var i = 0; i < 3; i++) result[i] = [];
+		for (i = 0; i < this.AyDimension; i++) {
+			for (var j = 0; j < this.AxDimension; j++) {
+				//Parsing is necessary here since addition operator can also concatenate strings
 				result[i][j] = Math.round((parseFloat(this.matrixA[i][j]) + parseFloat(this.matrixB[i][j])) * 100) / 100;
 			}
 		}
-
-		let string = 'Addition result:\r';
-		for (let i = 0; i < this.AyDimension; i++) {
-			for (let j = 0; j < this.AxDimension; j++) {
+		var string = 'Addition result:\r';
+		for (i = 0; i < this.AyDimension; i++) {
+			for (var j = 0; j < this.AxDimension; j++) {
 				string = string + '\t' + result[i][j];
 			}
 			string = string + '\r';
@@ -188,25 +185,23 @@ class MatrixCalculator {
 			this.printOnConsole('Number of columns on A is different from number of rows on B.');
 			return;
 		}
+		var result = [];
+		for (var i = 0; i < 3; i++) result[i] = [];
+		i = 0;
+		var j = 0;
+		//x refers to columns, y refers to rows
+		var rowsRes = this.AyDimension;
+		var columnsRes = this.BxDimension;
 
-		let result = [];
-		for (let i = 0; i < 3; i++) result[i] = [];
-
-		let i = 0,
-			j = 0,
-			rowRes = this.AxDimension,
-			columnRes = this.AyDimension;
-
-		for (let i = 0; i < rowRes; i++) {
-			for (let j = 0; j < columnRes; j++) {
+		for (i = 0; i < rowsRes; i++) {
+			for (j = 0; j < columnsRes; j++) {
 				result[i][j] = this.matrixA[i][0] * this.matrixB[0][j] + this.matrixA[i][1] * this.matrixB[1][j] + this.matrixA[i][2] * this.matrixB[2][j];
 				result[i][j] = Math.round(result[i][j] * 100) / 100;
 			}
 		}
-
-		let string = 'Mutiplication result:\r';
-		for (let i = 0; i < rowRes; i++) {
-			for (let j = 0; j < columnRes; j++) {
+		var string = 'Multiplication result:\r';
+		for (i = 0; i < rowsRes; i++) {
+			for (j = 0; j < columnsRes; j++) {
 				string = string + '\t' + result[i][j];
 			}
 			string = string + '\r';
@@ -214,7 +209,92 @@ class MatrixCalculator {
 		this.printOnConsole(string);
 	}
 
+	calculateDeterminant() {
+		this.rebuildMatrix();
+		if (this.AxDimension != this.AyDimension) {
+			this.determinantA = null;
+			this.printOnConsole('Non-square matrix, determinant cannot be calculated.');
+			return;
+		}
+		var determinant;
+		if (this.AxDimension == 1) {
+			determinant = this.matrixA[0][0];
+		}
+		if (this.AxDimension == 2) {
+			determinant = this.matrixA[0][0] * this.matrixA[1][1] - this.matrixA[0][1] * this.matrixA[1][0];
+		}
+		if (this.AxDimension == 3) {
+			var op1, op2, op3, r1, r2, r3;
+			op1 = this.matrixA[0][0] * this.matrixA[1][1] * this.matrixA[2][2];
+			op2 = this.matrixA[0][1] * this.matrixA[1][2] * this.matrixA[2][0];
+			op3 = this.matrixA[0][2] * this.matrixA[1][0] * this.matrixA[2][1];
+			r1 = this.matrixA[0][2] * this.matrixA[1][1] * this.matrixA[2][0];
+			r2 = this.matrixA[0][0] * this.matrixA[1][2] * this.matrixA[2][1];
+			r3 = this.matrixA[0][1] * this.matrixA[1][0] * this.matrixA[2][2];
+			determinant = Math.round((op1 + op2 + op3 - r1 - r2 - r3) * 100) / 100;
+		}
+		this.determinantA = determinant;
+		this.printOnConsole('Determinant: ' + determinant);
+		return;
+	}
 
+	printOnConsole(val) {
+		document.getElementById('console').value = val;
+	}
+
+	rebuildMatrix() {
+		var row1 = document.getElementsByClassName('matrix1row1');
+		var row2 = document.getElementsByClassName('matrix1row2');
+		var row3 = document.getElementsByClassName('matrix1row3');
+		for (var i = 0; i < 3; i++) {
+			this.matrixA[0][i] = row1[i].value;
+			this.matrixA[1][i] = row2[i].value;
+			this.matrixA[2][i] = row3[i].value;
+		}
+		row1 = document.getElementsByClassName('matrix2row1');
+		row2 = document.getElementsByClassName('matrix2row2');
+		row3 = document.getElementsByClassName('matrix2row3');
+		for (var i = 0; i < 3; i++) {
+			this.matrixB[0][i] = row1[i].value;
+			this.matrixB[1][i] = row2[i].value;
+			this.matrixB[2][i] = row3[i].value;
+		}
+		this.calculateDimensions();
+	}
+
+	calculateDimensions() {
+		//Calculating matrix A's dimensions
+		this.AyDimension = 3;
+		this.AxDimension = 3;
+
+		var count = 2;
+		//If there's a whole column of 0's, we'll decrease the dimension and look at the next one.
+		while (count >= 0 && this.matrixA[0][count] == 0 && this.matrixA[1][count] == 0 && this.matrixA[2][count] == 0) {
+			this.AxDimension--;
+			count--;
+		}
+		count = 2;
+		//If there's a whole row of 0's, we'll decrease the dimension and look at the next one.
+		while (count >= 0 && this.matrixA[count][0] == 0 && this.matrixA[count][1] == 0 && this.matrixA[count][2] == 0) {
+			this.AyDimension--;
+			count--;
+		}
+
+		//Calculating matrix B's dimensions in the same way
+		this.ByDimension = 3;
+		this.BxDimension = 3;
+
+		var count = 2;
+		while (count >= 0 && this.matrixB[0][count] == 0 && this.matrixB[1][count] == 0 && this.matrixB[2][count] == 0) {
+			this.BxDimension--;
+			count--;
+		}
+		count = 2;
+		while (count >= 0 && this.matrixB[count][0] == 0 && this.matrixB[count][1] == 0 && this.matrixB[count][2] == 0) {
+			this.ByDimension--;
+			count--;
+		}
+	}
 }
 
-const mc = new MatrixCalculator();
+var mc = new MatrixCalculator();

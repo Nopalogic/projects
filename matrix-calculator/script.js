@@ -182,7 +182,7 @@ class MatrixCalculator {
 		this.printOnConsole(string);
 	}
 
-	mutliplyMatrix() {
+	multiplyMatrix() {
 		this.rebuildMatrix();
 		if (this.AxDimension != this.ByDimension) {
 			this.printOnConsole('Number of columns on A is different from number of rows on B.');
@@ -213,6 +213,8 @@ class MatrixCalculator {
 		}
 		this.printOnConsole(string);
 	}
+
+
 }
 
 const mc = new MatrixCalculator();

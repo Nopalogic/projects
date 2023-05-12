@@ -26,16 +26,18 @@
 						<input class="matrix1row3" type="text" value="0" />
 					</div>
 				</div>
-				<div class="functions">
-					<input class="function" type="button" value="Determinant" onclick="mc.calculateDeterminant()" />
-					<input class="function" type="button" value="Transpose" onclick="mc.transposeMatrix()" />
-					<input class="function" type="button" value="Invert" onclick="mc.invertMatrix()" />
-					<input class="function" type="button" value="Rank" onclick="mc.calculateRank()" />
-				</div>
-				<div class="operations">
-					<input class="operation" type="button" value="A x B" onclick="mc.multiplyMatrix()" />
-					<input class="operation" type="button" value="A + B" onclick="mc.addMatrix()" />
-					<input class="operation" type="button" value="A - B" onclick="mc.subtractMatrix()" />
+				<div class="wrapper">
+					<!-- <div class="functions">
+						<input class="function" type="button" value="Determinant" onclick="mc.calculateDeterminant()" />
+						<input class="function" type="button" value="Transpose" onclick="mc.transposeMatrix()" />
+						<input class="function" type="button" value="Invert" onclick="mc.invertMatrix()" />
+						<input class="function" type="button" value="Rank" onclick="mc.calculateRank()" />
+					</div> -->
+					<div class="operations">
+						<input class="operation" type="button" value="A x B" onclick="mc.multiplyMatrix()" />
+						<input class="operation" type="button" value="A + B" onclick="mc.addMatrix()" />
+						<input class="operation" type="button" value="A - B" onclick="mc.subtractMatrix()" />
+					</div>
 				</div>
 				<div id="matrix2" class="parent">
 					<h1 class="title">Matrix B</h1>
@@ -52,7 +54,7 @@
 					</div>
 				</div>
 			</div>
-			<br />
+			
 			<div id="lower" class="outputMatrix">
 				<textarea wrap="soft" rows="10" cols="20" id="console" disabled></textarea>
 			</div>

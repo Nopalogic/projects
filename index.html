@@ -12,6 +12,7 @@
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		/>
+		<script src="./assets/api.js" defer></script>
 		<link rel="stylesheet" href="./assets/style.css" />
 	</head>
 	<body>
@@ -54,46 +55,9 @@
 						<button class="carousel-button" id="next"><i class="fa-solid fa-chevron-right"></i></button>
 					</div>
 				</div>
-				<div class="project-container">
-					<figure class="card">
-						<img src="./assets/images/img.png" alt="" />
-						<figcaption class="card-caption">
-							<div>
-								<h3>Project Title</h3>
-								<p>Project Description</p>
-							</div>
-							<a href="./matrix-calculator/index.html"
-								><button class="view-button"><i class="fa-solid fa-eye"></i></button
-							></a>
-						</figcaption>
-					</figure>
-					<figure class="card">
-						<img src="./assets/images/img.png" alt="" />
-						<figcaption class="card-caption">
-							<div>
-								<h3>Project Title</h3>
-								<p>Project Description</p>
-							</div>
-							<a href="./matrix-calculator/index.html"
-								><button class="view-button"><i class="fa-solid fa-eye"></i></button
-							></a>
-						</figcaption>
-					</figure>
-					<figure class="card">
-						<img src="./assets/images/img.png" alt="" />
-						<figcaption class="card-caption">
-							<div>
-								<h3>Project Title</h3>
-								<p>Project Description</p>
-							</div>
-							<a href="./matrix-calculator/index.html"
-								><button class="view-button"><i class="fa-solid fa-eye"></i></button
-							></a>
-						</figcaption>
-					</figure>
-				</div>
+				<div class="project-container"></div>
 			</section>
-		</main>
+		</main>	
 
 		<footer class="footer">
 			<div class="footer-container">
@@ -136,9 +100,14 @@
 										<path fill="#EEE" d="M24,30.9v4.2l-7.9-2.6L15.7,27h4l0.2,2.5L24,30.9z M19.1,17H24v-4h-9.1l0.7,12H24v-4h-4.6L19.1,17z"></path></svg
 								></a>
 							</li>
-							<li><svg class="logo" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 48 48">
-								<path fill="#0277BD" d="M41,5H7l3,34l14,4l14-4L41,5L41,5z"></path><path fill="#039BE5" d="M24 8L24 39.9 35.2 36.7 37.7 8z"></path><path fill="#FFF" d="M33.1 13L24 13 24 17 28.9 17 28.6 21 24 21 24 25 28.4 25 28.1 29.5 24 30.9 24 35.1 31.9 32.5 32.6 21 32.6 21z"></path><path fill="#EEE" d="M24,13v4h-8.9l-0.3-4H24z M19.4,21l0.2,4H24v-4H19.4z M19.8,27h-4l0.3,5.5l7.9,2.6v-4.2l-4.1-1.4L19.8,27z"></path>
-								</svg></li>
+							<li>
+								<svg class="logo" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 48 48">
+									<path fill="#0277BD" d="M41,5H7l3,34l14,4l14-4L41,5L41,5z"></path>
+									<path fill="#039BE5" d="M24 8L24 39.9 35.2 36.7 37.7 8z"></path>
+									<path fill="#FFF" d="M33.1 13L24 13 24 17 28.9 17 28.6 21 24 21 24 25 28.4 25 28.1 29.5 24 30.9 24 35.1 31.9 32.5 32.6 21 32.6 21z"></path>
+									<path fill="#EEE" d="M24,13v4h-8.9l-0.3-4H24z M19.4,21l0.2,4H24v-4H19.4z M19.8,27h-4l0.3,5.5l7.9,2.6v-4.2l-4.1-1.4L19.8,27z"></path>
+								</svg>
+							</li>
 							<li>
 								<svg class="logo" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 48 48">
 									<path fill="#ffd600" d="M6,42V6h36v36H6z"></path>

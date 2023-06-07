@@ -10,6 +10,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: #EAEEF2;
 }
 
 .container {
@@ -66,8 +67,13 @@ body {
 	font-weight: 600;
 }
 
-#console {
+.console {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
 	margin-top: 25px;
+	border: 1px solid;
+	border-radius: 6px;
+	background-color: #fff;
 	width: 100%;
 	resize: none;
 }
@@ -94,5 +100,10 @@ body {
 		width: 33%;
 		height: 6vh;
 		font-size: 14px;
+	}
+
+	.operations{
+		flex-direction: row;
+		margin-bottom: 24px;
 	}
 }

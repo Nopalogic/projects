@@ -247,6 +247,12 @@ class MatrixCalculator {
 		var row2 = document.getElementsByClassName('matrix1row2');
 		var row3 = document.getElementsByClassName('matrix1row3');
 
+		for (let i = 0; i < 3; i++) {
+			if (row1[i].value == '') row1[i].val = 0;
+			if (row2[i].value == '') row2[i].val = 0;
+			if (row3[i].value == '') row3[i].val = 0;
+		}
+
 		for (var i = 0; i < 3; i++) {
 			this.matrixA[0][i] = row1[i].value;
 			this.matrixA[1][i] = row2[i].value;
@@ -257,6 +263,12 @@ class MatrixCalculator {
 		row2 = document.getElementsByClassName('matrix2row2');
 		row3 = document.getElementsByClassName('matrix2row3');
 		
+		for (let i = 0; i < 3; i++) {
+			if (row1[i].value == '') row1[i].val = 0;
+			if (row2[i].value == '') row2[i].val = 0;
+			if (row3[i].value == '') row3[i].val = 0;
+		}
+
 		for (var i = 0; i < 3; i++) {
 			this.matrixB[0][i] = row1[i].value;
 			this.matrixB[1][i] = row2[i].value;
